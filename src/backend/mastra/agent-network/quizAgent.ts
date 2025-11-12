@@ -1,5 +1,4 @@
 import { Agent } from "@mastra/core/agent";
-import { Memory } from "@mastra/memory";
 
 export const quizAgent = new Agent({
   id: "quizAgent",
