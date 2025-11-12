@@ -1,10 +1,10 @@
 import { Mastra } from "@mastra/core";
 import { LibSQLStore } from "@mastra/libsql";
-import { singleLearningAgent } from "./singleLearningAgent.js";
+import { supervisorAgent } from "./supervisorAgent.js";
 
-export function createMastraWithSingleLearningAgent() {
+export function createMastraWithAgentNetwork() {
   return new Mastra({
-    agents: { singleLearningAgent },
+    agents: { supervisorAgent },
     storage: new LibSQLStore({ url: ":memory:" }),
     observability: { default: { enabled: true } },
   });

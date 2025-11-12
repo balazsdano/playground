@@ -1,7 +1,6 @@
 import { Mastra } from "@mastra/core";
 import { LibSQLStore } from "@mastra/libsql";
 import { singleAgent } from "./singleAgent.js";
-import { getDBURL } from "../utils/getDBURL.js";
 
 export function createMastraWithSingleAgent() {
   return new Mastra({
