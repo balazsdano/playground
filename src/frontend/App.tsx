@@ -39,8 +39,8 @@ function App() {
   return (
     <div id="chat">
       <ol id="msg-list">
-        {messages.map(({ role, content }) => (
-          <li className="msg-item">
+        {messages.map(({ id, role, content }) => (
+          <li key={id} className="msg-item">
             <div className="msg-role">{role}</div>
             <div className="msg-cont">
               <Markdown>{content}</Markdown>
