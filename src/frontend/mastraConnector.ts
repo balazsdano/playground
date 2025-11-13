@@ -15,6 +15,8 @@ export function sendMessage(
       return sendMessageToSingleAgent(previousMessages, newUserMessage);
     case "singleLearningAgent":
       return sendMessageToSingleLearningAgent(previousMessages, newUserMessage);
+    case "agentNetwork":
+      return sendMessageToAgentNetwork(previousMessages, newUserMessage);
     default:
       throw new Error("not yet");
   }
@@ -45,6 +47,24 @@ async function sendMessageToSingleLearningAgent(
   const agent = mastraClient.getAgent("singleLearningAgent");
   if (!agent) {
     throw new Error("singleLearningAgent not found");
+  }
+
+  const response = await agent.generate(newUserMessage.content, {
+    memory: {
+      resource: testResource,
+      thread: testThread,
+    },
+  });
+  return response.text;
+}
+
+async function sendMessageToAgentNetwork(
+  previousMessages: Message[],
+  newUserMessage: Message,
+): Promise<string> {
+  const agent = mastraClient.getAgent("supervisorAgent");
+  if (!agent) {
+    throw new Error("supervisorAgent not found");
   }
 
   const response = await agent.generate(newUserMessage.content, {

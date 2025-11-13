@@ -4,6 +4,6 @@ export type Approach =
   | "agentNetwork"
   | "multiStepWorkflow";
 
-export const approach: Approach = "singleLearningAgent";
+export const approach: Approach = "agentNetwork";
 export const testResource = "test-user";
 export const testThread = "test-thread";
