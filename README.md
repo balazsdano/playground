@@ -26,3 +26,5 @@ Both backend and frontend devservers should get hot-reloaded when you change the
 1. Hello. I'd like a quiz
 
 2. I am a high-school biology teacher. I will give a lecture about koalas, covering basic topics. I want to print and hand out a simple quiz with 4 easy questions. Just to help students' practise a little.
+
+3. Please add a bonus question

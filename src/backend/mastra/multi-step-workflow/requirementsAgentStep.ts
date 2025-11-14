@@ -5,11 +5,9 @@ import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
 
 const requirementsAgentOutputSchema = z.object({
   message: z.string().describe("Your message to the user"),
-  done: z
+  keyRequirementsClear: z
     .boolean()
-    .describe(
-      "Whether requirements are clear and ready for handoff to the creative team. If you are still waiting for user response, say `false`.",
-    ),
+    .describe("Whether key requirements are already clear."),
   contentFormat: z
     .union([z.literal("presentation"), z.literal("quiz"), z.literal("other")])
     .describe(
@@ -18,7 +16,7 @@ const requirementsAgentOutputSchema = z.object({
   requirements: z
     .string()
     .describe(
-      "Requirements doc to hand over to creative team. If you are not done with your work yet, then leave it empty.",
+      "Requirements in simple short well-documented format, including key requirements and any additional info the user shared. If key requirements are not clear yet, then leave it empty.",
     ),
 });
 
@@ -42,9 +40,9 @@ export const requirementsAgent = new Agent({
 
   ## Your workflow
   1. Receive customer's initial message for new project. And have brief initial conversation to clarify key requirements (e.g. content format, topic, use case and target audience, preferred style, etc).
-  2. When key requirements are clear, write project requirements document.
+  2. When key requirements are clear, write them into a simple short well-documented format.
 
-  After you are done with the requirements document, your work is done, the creative team will take it over from here.
+  After you are done with collecting the requirements, the creative team will take over to create the content.
 
   ## Kickoff document
   It should contain key project requirements + any additional info that the user provided or you collected during your initial conversation.
@@ -99,7 +97,7 @@ export const requirementsAgentStep = createStep({
       },
     );
 
-    if (!agentResponse.object.done) {
+    if (!agentResponse.object.keyRequirementsClear) {
       return await suspend({ aiMessage: agentResponse.object.message });
     }
 

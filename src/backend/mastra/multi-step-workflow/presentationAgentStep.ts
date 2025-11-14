@@ -5,7 +5,11 @@ import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
 import { requirementsAgentStepOutputSchema } from "./requirementsAgentStep.js";
 
 const presentationAgentOutputSchema = z.object({
-  message: z.string().describe("Your message to the user"),
+  message: z
+    .string()
+    .describe(
+      "Your message to the user. Do not duplicate the `contentHTML` here.",
+    ),
   done: z
     .boolean()
     .describe(
@@ -65,7 +69,12 @@ ${inputData.requirements}
     );
 
     if (!agentResponse.object.done) {
-      return await suspend({ aiMessage: agentResponse.object.message });
+      return await suspend({
+        aiMessage:
+          agentResponse.object.message +
+          "\n" +
+          agentResponse.object.contentHTML,
+      });
     }
 
     return {
