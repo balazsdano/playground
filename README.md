@@ -26,5 +26,17 @@ Backend uses in-memory storage, so restarting the server will reset the storage.
 
 **Koala quiz:**
 1. I'd like a quiz about koalas.
-2. I am a high-school biology teacher. I will give a lecture about koalas, covering basic topics. I want to print and hand out a simple quiz with 4 easy questions. To help students practise.
-3. Please add a bonus question.
+2. I am a high-school biology teacher. I will give a lecture about koalas, covering basic topics. I want to print and hand out a simple quiz with 8 easy questions. To help students practise. Please create quiz now.
+3. Please add a bonus question about an aspect that we don't have a question for yet. And then show me the complete quiz again.
+
+## Latencies measured
+
+Response latencies for the conversation messages above, measured in Mastra Studio.
+
+| Metric | Single agent | Single learning agent | Agent network | Multi-step workflow |
+|--------|--------------|----------------|---------------|----------|
+| Round 1 latency | 5.49 + 4.83 + 7.43 | | | |
+| Round 2 latency | 7.61 + 9.12 + 9.62 | | | |
+| Round 3 latency | 12.77 + 9.26 + 11.40 | | | |
+| Total latency | | | | |
+| Output quality | | | | |

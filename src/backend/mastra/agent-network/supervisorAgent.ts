@@ -3,11 +3,12 @@ import { Memory } from "@mastra/memory";
 import { presentationAgent } from "./presentationAgent.js";
 import { quizAgent } from "./quizAgent.js";
 import { generalistAgent } from "./generalistAgent.js";
+import { aiModel } from "../../../config.js";
 
 export const supervisorAgent = new Agent({
   id: "supervisorAgent",
   name: "supervisorAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: new Memory({
     options: {
       lastMessages: 100,

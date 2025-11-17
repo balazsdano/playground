@@ -3,6 +3,7 @@ import { createStep } from "@mastra/core/workflows";
 import { z } from "zod";
 import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
 import { requirementsAgentStepOutputSchema } from "./requirementsAgentStep.js";
+import { aiModel } from "../../../config.js";
 
 const presentationAgentOutputSchema = z.object({
   message: z
@@ -23,7 +24,7 @@ const presentationAgentOutputSchema = z.object({
 export const presentationAgent = new Agent({
   id: "presentationAgent",
   name: "presentationAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: sharedMemory,
   instructions: `
   Create a presentation in simple html format, to meet user's requirements.

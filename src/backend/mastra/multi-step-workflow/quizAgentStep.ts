@@ -3,6 +3,7 @@ import { createStep } from "@mastra/core/workflows";
 import { z } from "zod";
 import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
 import { requirementsAgentStepOutputSchema } from "./requirementsAgentStep.js";
+import { aiModel } from "../../../config.js";
 
 const quizAgentOutputSchema = z.object({
   message: z
@@ -23,7 +24,7 @@ const quizAgentOutputSchema = z.object({
 export const quizAgent = new Agent({
   id: "quizAgent",
   name: "quizAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: sharedMemory,
   instructions: `
   Create a quiz in simple markdown format, to meet user's requirements.

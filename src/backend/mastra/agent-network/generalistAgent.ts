@@ -1,11 +1,12 @@
 import { Agent } from "@mastra/core/agent";
+import { aiModel } from "../../../config.js";
 
 export const generalistAgent = new Agent({
   id: "generalistAgent",
   name: "generalistAgent",
   description:
     "This agent does not have a specific specialization, is rather a good generalist. While not as excellent at a specific content format as a specialist would be, still does a good enough job.",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   instructions: `
   Create digital content to meet user's requirements.
   If some requirement is not clear, ask clarifying questions. Then wait for user response before proceeding to creating the content.

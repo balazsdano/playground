@@ -1,10 +1,11 @@
 import { Agent } from "@mastra/core/agent";
 import { Memory } from "@mastra/memory";
+import { aiModel } from "../../../config.js";
 
 export const singleAgent = new Agent({
   id: "singleAgent",
   name: "singleAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: new Memory({
     options: {
       lastMessages: 100,

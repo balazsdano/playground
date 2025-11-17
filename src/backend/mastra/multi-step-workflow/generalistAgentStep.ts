@@ -3,6 +3,7 @@ import { createStep } from "@mastra/core/workflows";
 import { z } from "zod";
 import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
 import { requirementsAgentStepOutputSchema } from "./requirementsAgentStep.js";
+import { aiModel } from "../../../config.js";
 
 const generalistAgentOutputSchema = z.object({
   message: z
@@ -23,7 +24,7 @@ const generalistAgentOutputSchema = z.object({
 export const generalistAgent = new Agent({
   id: "generalistAgent",
   name: "generalistAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: sharedMemory,
   instructions: `
   Create digital content to meet user's requirements.

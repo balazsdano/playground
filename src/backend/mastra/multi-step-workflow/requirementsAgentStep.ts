@@ -2,6 +2,7 @@ import { Agent } from "@mastra/core/agent";
 import { createStep } from "@mastra/core/workflows";
 import { z } from "zod";
 import { sharedMemory, testResource, testThread } from "./sharedMemory.js";
+import { aiModel } from "../../../config.js";
 
 const requirementsAgentOutputSchema = z.object({
   message: z.string().describe("Your message to the user"),
@@ -23,7 +24,7 @@ const requirementsAgentOutputSchema = z.object({
 export const requirementsAgent = new Agent({
   id: "requirementsAgent",
   name: "requirementsAgent",
-  model: "openai/gpt-4o-mini",
+  model: aiModel,
   memory: sharedMemory,
   instructions: `
   Act as project manager in a creative digital agency.
@@ -40,7 +41,7 @@ export const requirementsAgent = new Agent({
 
   ## Your workflow
   1. Receive customer's initial message for new project. And have brief initial conversation to clarify key requirements (e.g. content format, topic, use case and target audience, preferred style, etc).
-  2. When key requirements are clear, write them into a simple short well-documented format.
+  2. When key requirements are clear, write them into a simple short well-documented format. **Do not generate the content itself, it will be done by the creative team.**
 
   After you are done with collecting the requirements, the creative team will take over to create the content.
 
